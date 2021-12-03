@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>CourseSelectorApp</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+<body>
+  <nav class="navbar navbar-dark bg-dark">
+    <h2 class="text-light" style="font-size: 20px">Universidad Privada de Mexico</h2>
+  
+    <ul class="nav nav-pills">
+      <li class="nav-item">
+        <a [routerLink]="['/registro/docente', idSuperUsuario]" class="link-secondary">
+          <h2 class="nav-link text-lg-right text-secondary" 
+          style="font-size: 18px">Registrar Docentes</h2>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a [routerLink]="['/registro/jefe', idSuperUsuario]" class="link-secondary">
+          <h2 class="nav-link text-lg-right text-secondary" 
+          style="font-size: 18px">Registrar Jefes de carrera</h2>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="http://localhost:4200/auth/login/su" class="link-secondary">
+          <h2 class="nav-link text-lg-right text-secondary" style="font-size: 18px">Cerrar</h2>
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+  <div class="professors-table">
+    <h2 style="font-size: 20px">Docentes Registrados</h2>
+    <table class="table table-hover" >
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Apellido Paterno</th>
+                <th scope="col">Apellido Materno</th>
+                <th scope="col">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let docente of docentes">
+                <th scope="row">{{docente.idDocente}}</th>
+                <td>{{docente.nombre}}</td>
+                <td>{{docente.apellidoPaterno}}</td>
+                <td>{{docente.apellidoMaterno}}</td>
+                <td>
+                    <button class="btn btn-warning" (click)="updateDocente(docente)">Actualiar</button>
+                    <button class="btn btn-danger" (click)="deleteDocente(docente)">Eliminar</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+  </div>
+
+  <div class="cco-table">
+    <h2 style="font-size: 20px">Jefes de Carrera Registrados</h2>
+    <table class="table table-hover" >
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Apellido Paterno</th>
+                <th scope="col">Apellido Materno</th>
+                <th scope="col">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let jefe of jefesCarrera">
+                <th scope="row">{{jefe.idJefeCarrera}}</th>
+                <td>{{jefe.nombre}}</td>
+                <td>{{jefe.apellidoPaterno}}</td>
+                <td>{{jefe.apellidoMaterno}}</td>
+                <td>
+                    <button class="btn btn-warning" (click)="updateJefe(jefe)">Actualiar</button>
+                    <button class="btn btn-danger" (click)="deleteJefe(jefe)">Eliminar</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+  </div>
+
+</body>
+</html>

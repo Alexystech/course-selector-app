@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>CourseSelectorApp</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+<body>
+  <div class="loginbox">
+
+    <h1>Jefes de Carrera</h1>
+  
+    <form [formGroup]="jefeForm" (ngSubmit)="login()">
+        <label>Usuario</label>
+        <input type="text" formControlName="idJefeCarrera" placeholder="usuario" required="required">
+        <br>
+        <label>Contraseña</label>
+        <input type="password" formControlName="password" placeholder="contraseña" required="required">
+        <br>
+        <button type="submit" [disabled]="jefeForm.invalid">Iniciar secion</button>
+    </form>
+  </div>
+</body>
+</html>

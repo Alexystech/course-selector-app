@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>CourseSelectorApp</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+
+<body>
+  <nav class="navbar fixed-top navbar-dark bg-dark">
+    <h2 class="text-light" style="font-size: 20px">Universidad Privada de Mexico</h2>
+
+    <ul class="nav nav-pills">
+      <li class="nav-item">
+        <a [routerLink]="['/d/dashboard/', idDocente]" class="link-secondary">
+          <h2 class="nav-link text-lg-right text-secondary" style="font-size: 18px">Regresar</h2>
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+  <div class="escolaridad-form">
+
+    <h1>Agregar una escolaridad</h1>
+    <form [formGroup]="escolaridadForm" (ngSubmit)="register()">
+      <div class="form-group">
+        <label>Cedula profecional</label>
+        <input type="text" formControlName="cedulaProfecional" placeholder="Cedula" class="form-control"
+          required="required">
+      </div>
+      <div class="form-group">
+        <label>Nombre de la Carrera</label>
+        <input type="text" formControlName="carrera" placeholder="Nombre de la carrera" class="form-control"
+          required="required">
+      </div>
+      <div class="form-group">
+        <label>Docente</label>
+        <input type="text" formControlName="idDocente" placeholder="ID del Docente" [ngModel]="idDocente"
+          class="form-control" required="required" readonly="readonly">
+      </div>
+
+      <button type="submit" class="btn btn-success" [disabled]="escolaridadForm.invalid">Enviar</button>
+    </form>
+  </div>
+
+  <div *ngIf="!buttonAsigHorario" class="alert alert-danger" role="alert">
+    Ya has solicitado tu horario!
+  </div>
+
+  <div class="horario-table">
+    <form (ngSubmit)="onSubmit()">
+      <h1>Solicitar Horario</h1>
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">Dia</th>
+            <th scope="col">07:00</th>
+            <th scope="col">09:00</th>
+            <th scope="col">11:00</th>
+            <th scope="col">13:00</th>
+            <th scope="col">15:00</th>
+            <th scope="col">17:00</th>
+            <th scope="col">19:00</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of horasDia">
+            <th scope="row">{{item.dia}}</th>
+            <td><input type="checkbox" name="{{item.hora_1}}" (change)="onchange()"
+                [(ngModel)]="item.hora_1.isselected"></td>
+            <td><input type="checkbox" name="{{item.hora_2}}" (change)="onchange()"
+                [(ngModel)]="item.hora_2.isselected"></td>
+            <td><input type="checkbox" name="{{item.hora_3}}" (change)="onchange()"
+                [(ngModel)]="item.hora_3.isselected"></td>
+            <td><input type="checkbox" name="{{item.hora_4}}" (change)="onchange()"
+                [(ngModel)]="item.hora_4.isselected"></td>
+            <td><input type="checkbox" name="{{item.hora_5}}" (change)="onchange()"
+                [(ngModel)]="item.hora_5.isselected"></td>
+            <td><input type="checkbox" name="{{item.hora_6}}" (change)="onchange()"
+                [(ngModel)]="item.hora_6.isselected"></td>
+            <td><input type="checkbox" name="{{item.hora_7}}" (change)="onchange()"
+                [(ngModel)]="item.hora_7.isselected"></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <button *ngIf="buttonAsigHorario" class="btn btn-success">Enviar</button>
+    </form>
+  </div>
+
+</body>
+
+</html>
