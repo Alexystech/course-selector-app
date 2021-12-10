@@ -42,6 +42,26 @@
     </table>
   </div>
 
+  <div class="asignaturas-solicitadas-table">
+    <h2 style="font-size: 20px">Asignaturas solicitadas</h2>
+    <table class="table table-hover" >
+        <thead>
+            <tr>
+                <th scope="col">Nombre de la asignatura</th>
+                <th scope="col">Semestre</th>
+                <th scope="col">Nombre de la carrera</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let asignatura of materiasSolicitadas">
+                <th scope="row">{{asignatura.nombreAsignatura}}</th>
+                <td>{{asignatura.semestre}}</td>
+                <td>{{asignatura.nombreCarrera}}</td>
+            </tr>
+        </tbody>
+    </table>
+  </div>
+
   <div class="asignacion-horario-def-table">
     <h2 style="font-size: 20px">Horario asignado</h2>
     <table class="table table-hover" >

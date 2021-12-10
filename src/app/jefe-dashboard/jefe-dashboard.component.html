@@ -1,1 +1,46 @@
-<p>jefe-dashboard works!</p>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>CourseSelectorApp</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+  </head>
+<body>
+  <nav class="navbar fixed-top navbar-dark bg-dark">
+    <h2 class="text-light" style="font-size: 20px">Universidad Privada de Mexico</h2>
+  
+    <ul class="nav nav-pills">
+      <li class="nav-item">
+        <a [routerLink]="['/solicitud/horario', idJefeCarrera]" class="link-secondary">
+          <h2 class="nav-link text-lg-right text-secondary" style="font-size: 18px">Asignar horario</h2>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="http://localhost:4200/auth/login/jc" class="link-secondary">
+          <h2 class="nav-link text-lg-right text-secondary" style="font-size: 18px">Cerrar</h2>
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+  <div class="graph">
+    <h2 style="font-size: 20px">Docentes con mayor disponibilidad de tiempo</h2>
+    <ngx-charts-area-chart
+        [view]="view"
+        scheme="horizon"
+        [legend]="legend"
+        [showXAxisLabel]="showXAxisLabel"
+        [showYAxisLabel]="showYAxisLabel"
+        [xAxis]="xAxis"
+        [yAxis]="yAxis"
+        [xAxisLabel]="xAxisLabel"
+        [yAxisLabel]="yAxisLabel"
+        [timeline]="timeline"
+        [results]="multi"
+        (select)="onSelect($event)">
+    </ngx-charts-area-chart>
+</div>
+
+</body>
+</html>

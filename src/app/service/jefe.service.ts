@@ -38,4 +38,8 @@ export class JefeService {
   public loginJefe(jefeCarrera: any): Observable<any> {
     return this.httpClient.post(this.baseUrl + "/auth/jefe-carrera", jefeCarrera);
   }
+
+  public getJefesCarreraFilteredByIdJefeCarreraInCarreras(): Observable<any> {
+    return this.httpClient.get(this.baseUrl + "/get/jefes-carrera/filtered/by/unsigned");
+  }
 }

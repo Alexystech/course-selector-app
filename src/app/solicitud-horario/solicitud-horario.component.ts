@@ -3,6 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AsigHorarioService } from '../service/asig-horario.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EscolaridadService } from '../service/escolaridad.service';
+import { AsignaturaPorCarreraService } from '../service/asignatura-por-carrera.service';
+import { SolicitudMateriaService } from '../service/solicitud-materia.service';
 
 @Component({
   selector: 'app-solicitud-horario',
@@ -12,6 +14,7 @@ import { EscolaridadService } from '../service/escolaridad.service';
 export class SolicitudHorarioComponent implements OnInit {
 
   escolaridadForm!: FormGroup;
+  solicitudMateriasForm!: FormGroup;
 
   idDocente: any = '';
   horasDisp!: horaDisp[];
@@ -19,13 +22,16 @@ export class SolicitudHorarioComponent implements OnInit {
   buttonAsigHorario!: boolean;
   
   miHorario: asigHorario[] = [];
+  asignaturasDisponibles!: any;
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     public asigHorarioService: AsigHorarioService,
     public fb: FormBuilder,
-    public escolaridadService: EscolaridadService
+    public escolaridadService: EscolaridadService,
+    public asignaturaPorCarreraService: AsignaturaPorCarreraService,
+    public solicitudMateriaService: SolicitudMateriaService
   ) { }
 
   ngOnInit(): void {
@@ -38,14 +44,36 @@ export class SolicitudHorarioComponent implements OnInit {
       idDocente: ['', Validators.required]
     });
 
+    this.solicitudMateriasForm = this.fb.group({
+      docente: ['', Validators.required],
+      asignaturaPorCarrera: ['', Validators.required]
+    });
+
     this.asigHorarioService.existAnyAsigHorarioByDocenteId(this.idDocente).subscribe(resp => {
       this.buttonAsigHorario = !resp;
-    });
+    },
+    error => { console.error(error) }  
+    );
+
+    this.asignaturaPorCarreraService.getAllAsignaturasDisponibles().subscribe(resp => {
+      this.asignaturasDisponibles = resp;
+    },
+    error => { console.error(error) }  
+    );
   }
 
   register(): void {
     this.escolaridadService.createEscolaridad(this.escolaridadForm.value).subscribe(resp => {
-      this.escolaridadForm.reset();
+      this.escolaridadForm.controls['cedulaProfecional'].reset();
+      this.escolaridadForm.controls['carrera'].reset();
+    },
+      error => { console.error(error) }  
+    );
+  }
+
+  registrarMaterias() {
+    this.solicitudMateriaService.createSolicitud(this.solicitudMateriasForm.value).subscribe(resp => {
+      this.solicitudMateriasForm.controls['asignaturaPorCarrera'].reset();
     },
       error => { console.error(error) }  
     );
@@ -102,41 +130,41 @@ export class SolicitudHorarioComponent implements OnInit {
 
   getHoras() {
     this.horasDisp=[
-      { id: 41, dia: "Lunes", hora: "07:00:00", isselected: false },
-      { id: 42, dia: "Lunes", hora: "09:00:00", isselected: false },
-      { id: 43, dia: "Lunes", hora: "11:00:00", isselected: false },
-      { id: 44, dia: "Lunes", hora: "13:00:00", isselected: false },
-      { id: 45, dia: "Lunes", hora: "15:00:00", isselected: false },
-      { id: 46, dia: "Lunes", hora: "17:00:00", isselected: false },
-      { id: 47, dia: "Lunes", hora: "19:00:00", isselected: false },
-      { id: 48, dia: "Martes", hora: "07:00:00", isselected: false },
-      { id: 49, dia: "Martes", hora: "09:00:00", isselected: false },
-      { id: 50, dia: "Martes", hora: "11:00:00", isselected: false },
-      { id: 51, dia: "Martes", hora: "13:00:00", isselected: false },
-      { id: 52, dia: "Martes", hora: "15:00:00", isselected: false },
-      { id: 53, dia: "Martes", hora: "17:00:00", isselected: false },
-      { id: 54, dia: "Martes", hora: "19:00:00", isselected: false },
-      { id: 55, dia: "Miercoles", hora: "07:00:00", isselected: false },
-      { id: 56, dia: "Miercoles", hora: "09:00:00", isselected: false },
-      { id: 57, dia: "Miercoles", hora: "11:00:00", isselected: false },
-      { id: 58, dia: "Miercoles", hora: "13:00:00", isselected: false },
-      { id: 59, dia: "Miercoles", hora: "15:00:00", isselected: false },
-      { id: 60, dia: "Miercoles", hora: "17:00:00", isselected: false },
-      { id: 61, dia: "Miercoles", hora: "19:00:00", isselected: false },
-      { id: 62, dia: "Jueves", hora: "07:00:00", isselected: false },
-      { id: 63, dia: "Jueves", hora: "09:00:00", isselected: false },
-      { id: 64, dia: "Jueves", hora: "11:00:00", isselected: false },
-      { id: 65, dia: "Jueves", hora: "13:00:00", isselected: false },
-      { id: 66, dia: "Jueves", hora: "15:00:00", isselected: false },
-      { id: 67, dia: "Jueves", hora: "17:00:00", isselected: false },
-      { id: 68, dia: "Jueves", hora: "19:00:00", isselected: false },
-      { id: 69, dia: "Viernes", hora: "07:00:00", isselected: false },
-      { id: 70, dia: "Viernes", hora: "09:00:00", isselected: false },
-      { id: 71, dia: "Viernes", hora: "11:00:00", isselected: false },
-      { id: 72, dia: "Viernes", hora: "13:00:00", isselected: false },
-      { id: 73, dia: "Viernes", hora: "15:00:00", isselected: false },
-      { id: 74, dia: "Viernes", hora: "17:00:00", isselected: false },
-      { id: 75, dia: "Viernes", hora: "19:00:00", isselected: false },
+      { id: 1, dia: "Lunes", hora: "07:00:00", isselected: false },
+      { id: 2, dia: "Lunes", hora: "09:00:00", isselected: false },
+      { id: 3, dia: "Lunes", hora: "11:00:00", isselected: false },
+      { id: 4, dia: "Lunes", hora: "13:00:00", isselected: false },
+      { id: 5, dia: "Lunes", hora: "15:00:00", isselected: false },
+      { id: 6, dia: "Lunes", hora: "17:00:00", isselected: false },
+      { id: 7, dia: "Lunes", hora: "19:00:00", isselected: false },
+      { id: 8, dia: "Martes", hora: "07:00:00", isselected: false },
+      { id: 9, dia: "Martes", hora: "09:00:00", isselected: false },
+      { id: 10, dia: "Martes", hora: "11:00:00", isselected: false },
+      { id: 11, dia: "Martes", hora: "13:00:00", isselected: false },
+      { id: 12, dia: "Martes", hora: "15:00:00", isselected: false },
+      { id: 13, dia: "Martes", hora: "17:00:00", isselected: false },
+      { id: 14, dia: "Martes", hora: "19:00:00", isselected: false },
+      { id: 15, dia: "Miercoles", hora: "07:00:00", isselected: false },
+      { id: 16, dia: "Miercoles", hora: "09:00:00", isselected: false },
+      { id: 17, dia: "Miercoles", hora: "11:00:00", isselected: false },
+      { id: 18, dia: "Miercoles", hora: "13:00:00", isselected: false },
+      { id: 19, dia: "Miercoles", hora: "15:00:00", isselected: false },
+      { id: 20, dia: "Miercoles", hora: "17:00:00", isselected: false },
+      { id: 21, dia: "Miercoles", hora: "19:00:00", isselected: false },
+      { id: 22, dia: "Jueves", hora: "07:00:00", isselected: false },
+      { id: 23, dia: "Jueves", hora: "09:00:00", isselected: false },
+      { id: 24, dia: "Jueves", hora: "11:00:00", isselected: false },
+      { id: 25, dia: "Jueves", hora: "13:00:00", isselected: false },
+      { id: 26, dia: "Jueves", hora: "15:00:00", isselected: false },
+      { id: 27, dia: "Jueves", hora: "17:00:00", isselected: false },
+      { id: 28, dia: "Jueves", hora: "19:00:00", isselected: false },
+      { id: 29, dia: "Viernes", hora: "07:00:00", isselected: false },
+      { id: 30, dia: "Viernes", hora: "09:00:00", isselected: false },
+      { id: 31, dia: "Viernes", hora: "11:00:00", isselected: false },
+      { id: 32, dia: "Viernes", hora: "13:00:00", isselected: false },
+      { id: 33, dia: "Viernes", hora: "15:00:00", isselected: false },
+      { id: 34, dia: "Viernes", hora: "17:00:00", isselected: false },
+      { id: 35, dia: "Viernes", hora: "19:00:00", isselected: false },
     ];
 
     this.horasDia=[

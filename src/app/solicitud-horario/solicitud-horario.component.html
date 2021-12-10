@@ -45,6 +45,31 @@
     </form>
   </div>
 
+  <div class="solicitud-materias-form">
+
+    <h1>Solicitar asignaturas</h1>
+  
+    <form [formGroup]="solicitudMateriasForm" (ngSubmit)="registrarMaterias()">
+      <div class="form-group">
+        <label>Docente</label>
+        <input type="text" formControlName="docente" placeholder="ID del Docente" [ngModel]="idDocente"
+          class="form-control" required="required" readonly="readonly">
+      </div>
+      <div class="form-group">
+        <label>Asignaturas</label>
+        <select class="form-select"
+          aria-label="Default select example" 
+          formControlName="asignaturaPorCarrera">
+        <option *ngFor="let item of asignaturasDisponibles" [ngValue]="item.idAsignatura">
+          {{item.nombreAsignatura}}
+        </option>
+      </select>
+      </div>
+
+      <button type="submit" class="btn btn-success" [disabled]="solicitudMateriasForm.invalid">Solicitar</button>
+    </form>
+  </div>
+
   <div *ngIf="!buttonAsigHorario" class="alert alert-danger" role="alert">
     Ya has solicitado tu horario!
   </div>
@@ -86,7 +111,7 @@
         </tbody>
       </table>
 
-      <button *ngIf="buttonAsigHorario" class="btn btn-success">Enviar</button>
+      <button *ngIf="buttonAsigHorario" class="btn btn-success">Solicitar</button>
     </form>
   </div>
 

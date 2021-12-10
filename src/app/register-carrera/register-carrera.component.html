@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>CourseSelectorApp</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+<body>
+  <nav class="navbar fixed-top navbar-dark bg-dark">
+    <h2 class="text-light" style="font-size: 20px">Universidad Privada de Mexico</h2>
+  
+    <ul class="nav nav-pills">
+      <li class="nav-item">
+        <a [routerLink]="['/su/dashboard/', idSuperUsuario]" class="link-secondary">
+          <h2 class="nav-link text-lg-right text-secondary" style="font-size: 18px">Regresar</h2>
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+  <div class="register-box">
+
+    <h1>Registro de carrera</h1>
+  
+    <form [formGroup]="registerForm" (ngSubmit)="register()">
+      <div class="form-group">
+        <label>Nombre de la carrera</label>
+        <input type="text" 
+        formControlName="nombreCarrera" 
+        placeholder="Nombre de carrera" 
+        class="form-control" 
+        required="required">
+      </div>
+      <div class="form-group">
+        <label>ID Jefe de Carrera</label>
+        <select class="form-select"
+          aria-label="Default select example" 
+          formControlName="jefeCarrera">
+        <option [value]="item.idJefeCarrera" *ngFor="let item of jefesCarrera" [value]="item.idJefeCarrera">
+          {{item.idJefeCarrera}}
+        </option>
+      </select>
+      </div>
+
+      <button type="submit" class="btn btn-success" [disabled]="registerForm.invalid">Registrar</button>
+    </form>
+  </div>
+</body>
+</html>

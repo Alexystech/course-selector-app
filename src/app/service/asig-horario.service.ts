@@ -30,4 +30,8 @@ export class AsigHorarioService {
   public getAllAignacionesByIdDocente(idDocente: any): Observable<any> {
     return this.httpClient.get(this.baseUrl + "/get/all/asignacion/by/docente/" + idDocente);
   }
+
+  public getTopDocentesMayorDisponibilidad(): Observable<any> {
+    return this.httpClient.get(this.baseUrl + "/get/top/docentes");
+  }
 }

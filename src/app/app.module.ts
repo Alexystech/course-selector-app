@@ -17,6 +17,8 @@ import { RegisterJefeComponent } from './register-jefe/register-jefe.component';
 import { DocenteDashboardComponent } from './docente-dashboard/docente-dashboard.component';
 import { JefeDashboardComponent } from './jefe-dashboard/jefe-dashboard.component';
 import { SolicitudHorarioComponent } from './solicitud-horario/solicitud-horario.component';
+import { RegisterCarreraComponent } from './register-carrera/register-carrera.component';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,8 @@ import { SolicitudHorarioComponent } from './solicitud-horario/solicitud-horario
     RegisterJefeComponent,
     DocenteDashboardComponent,
     JefeDashboardComponent,
-    SolicitudHorarioComponent
+    SolicitudHorarioComponent,
+    RegisterCarreraComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +41,8 @@ import { SolicitudHorarioComponent } from './solicitud-horario/solicitud-horario
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    NgxChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
