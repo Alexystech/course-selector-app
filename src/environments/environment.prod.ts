@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  baseUrl: 'https://git.heroku.com/course-selector-api.git/v1/course-selector-api'
+  baseUrl: 'https://course-selector-api.herokuapp.com/v1/course-selector-api'
 };
