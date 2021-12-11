@@ -12,7 +12,7 @@
   
     <ul class="nav nav-pills">
       <li class="nav-item">
-        <a [routerLink]="['/solicitud/horario', idJefeCarrera]" class="link-secondary">
+        <a [routerLink]="['/asignacion/horario', idJefeCarrera]" class="link-secondary">
           <h2 class="nav-link text-lg-right text-secondary" style="font-size: 18px">Asignar horario</h2>
         </a>
       </li>
@@ -40,6 +40,28 @@
         [results]="multi"
         (select)="onSelect($event)">
     </ngx-charts-area-chart>
+</div>
+
+<div class="horario-table">
+  <h2 style="font-size: 20px">Horario asignado</h2>
+  <table class="table table-hover" >
+      <thead>
+          <tr>
+              <th scope="col">Docente</th>
+              <th scope="col">Fecha</th>
+              <th scope="col">Asignatura</th>
+              <th scope="col">Semestre</th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr *ngFor="let item of horarioAsignado">
+              <th scope="row">{{item.idDocente.idDocente}}</th>
+              <td>{{item.idHora.dia.nombreDia}} - {{item.idHora.hora}}</td>
+              <td>{{item.idAsignatura.nombreAsignatura}}</td>
+              <td>{{item.semestre}}</td>
+          </tr>
+      </tbody>
+  </table>
 </div>
 
 </body>

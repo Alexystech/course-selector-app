@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DocenteService } from '../service/docente.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-register-docente',
@@ -40,6 +41,12 @@ export class RegisterDocenteComponent implements OnInit {
     this.docenteService.createDocente(this.registerForm.value).subscribe(resp => {
       this.registerForm.reset();
       this.router.navigate(['/su/dashboard/',this.idSuperUsuario]);
+
+      Swal.fire(
+        'OK',
+        'Registrado!',
+        'success'
+      )
     },
       error => { console.error(error) }
     );

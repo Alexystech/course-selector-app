@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>CourseSelectorApp</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+
+<body>
+  <nav class="navbar fixed-top navbar-dark bg-dark">
+    <h2 class="text-light" style="font-size: 20px">Universidad Privada de Mexico</h2>
+
+    <ul class="nav nav-pills">
+      <li class="nav-item">
+        <a [routerLink]="['/jc/dashboard/', idJefeCarrera]" class="link-secondary">
+          <h2 class="nav-link text-lg-right text-secondary" style="font-size: 18px">Regresar</h2>
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+  <div class="asignacion-horario-form">
+
+    <h1>Asignacion de horarios</h1>
+  
+    <form [formGroup]="asignacionHorarioForm" (ngSubmit)="asignarHorario()">
+
+      <div class="form-group">
+        <label>Semestres</label>
+        <select class="form-select"
+          aria-label="Default select example" 
+          formControlName="semestre"
+          (change)="onSelect($event.target)">
+        <option *ngFor="let item of semestres" [value]="item.semestre">
+          {{item.semestre}}
+        </option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Horas</label>
+        <select class="form-select"
+          aria-label="Default select example" 
+          formControlName="idHora">
+        <option *ngFor="let item of horas" [ngValue]="item.idHora">
+          {{item.dia.nombreDia}} - {{item.hora}}
+        </option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Asignaturas</label>
+        <select class="form-select"
+          aria-label="Default select example" 
+          formControlName="idAsignatura"
+          (change)="onSelectAsignatura($event.target)">
+        <option *ngFor="let item of asignaturasPorCarrera" [value]="item.idAsigPorCarrera">
+          {{item.idAsignatura.nombreAsignatura}}
+        </option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Docentes</label>
+        <select class="form-select"
+          aria-label="Default select example" 
+          formControlName="idDocente">
+        <option *ngFor="let item of solicitudesPorMateria" [ngValue]="item.docente.idDocente">
+          {{item.docente.idDocente}}
+        </option>
+        </select>
+      </div>
+
+      <button type="submit" class="btn btn-success" [disabled]="asignacionHorarioForm.invalid">Asignar horario</button>
+    </form>
+  </div>
+
+</body>
+
+</html>

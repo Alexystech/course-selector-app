@@ -34,4 +34,8 @@ export class SolicitudMateriaService {
   public getAllMateriasSolicitadas(idDocente: any): Observable<any> {
     return this.httpClient.get(this.baseUrl + "/get/materias/solicitadas/by/" + idDocente);
   }
+
+  public getSolicitudesByMateria(asignaturaPorCarrera: any): Observable<any> {
+    return this.httpClient.get(this.baseUrl + "/get/solicitudes/by/" + asignaturaPorCarrera);
+  }
 }

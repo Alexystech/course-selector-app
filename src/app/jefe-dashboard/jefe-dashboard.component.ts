@@ -2,6 +2,7 @@ import { Component, HostListener, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Data } from '../model/data';
 import { AsigHorarioService } from '../service/asig-horario.service';
+import { AsignacionHorarioDefService } from '../service/asignacion-horario-def.service';
 
 @Component({
   selector: 'app-jefe-dashboard',
@@ -14,6 +15,7 @@ export class JefeDashboardComponent implements OnInit {
 
   screenHeight!: number;
   screenWidth!: number;
+  horarioAsignado!: any;
 
   @HostListener('window:resize', ['$event'])
   onResize(event?: any) {
@@ -49,14 +51,19 @@ export class JefeDashboardComponent implements OnInit {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    public asigHorarioService: AsigHorarioService
+    public asigHorarioService: AsigHorarioService,
+    public asignacionHorarioDefService: AsignacionHorarioDefService
   ) {
     this.onResize();
   }
 
   ngOnInit(): void {
-    this.idJefeCarrera = this.route.snapshot.paramMap.get('idJefe');
+    this.idJefeCarrera = this.route.snapshot.paramMap.get('idJefeCarrera');
     this.updateChart();
+
+    this.asignacionHorarioDefService.getAllAsignaciones().subscribe(resp => {
+      this.horarioAsignado = resp;
+    });
   }
 
   updateChart(): void {

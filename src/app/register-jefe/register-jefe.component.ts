@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { JefeService } from '../service/jefe.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-register-jefe',
@@ -40,6 +41,12 @@ export class RegisterJefeComponent implements OnInit {
     this.jefeService.createJefeCarrera(this.registerForm.value).subscribe(resp => {
       this.registerForm.reset();
       this.router.navigate(['/su/dashboard/',this.idSuperUsuario]);
+
+      Swal.fire(
+        'OK',
+        'Registrado!',
+        'success'
+      )
     },
       error => { console.error(error) }
     );

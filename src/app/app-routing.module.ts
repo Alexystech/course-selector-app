@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
+import { AsignarHorarioComponent } from './asignar-horario/asignar-horario.component';
 import { DocenteDashboardComponent } from './docente-dashboard/docente-dashboard.component';
 import { JefeDashboardComponent } from './jefe-dashboard/jefe-dashboard.component';
 import { LoginDocenteComponent } from './login-docente/login-docente.component';
@@ -22,7 +23,8 @@ const routes: Routes = [
   { path: 'd/dashboard/:idDocente', component: DocenteDashboardComponent },
   { path: 'jc/dashboard/:idJefeCarrera', component: JefeDashboardComponent },
   { path: 'solicitud/horario/:idDocente', component: SolicitudHorarioComponent },
-  { path: 'registro/carrera/:idSuperUsuario', component: RegisterCarreraComponent }
+  { path: 'registro/carrera/:idSuperUsuario', component: RegisterCarreraComponent },
+  { path: 'asignacion/horario/:idJefeCarrera', component: AsignarHorarioComponent }
 ];
 
 @NgModule({
