@@ -47,7 +47,7 @@ export class SuDashboardComponent implements OnInit {
   }
 
   public updateDocente(docente: any): void {
-
+    
   }
 
   public deleteDocente(docente: any): void {

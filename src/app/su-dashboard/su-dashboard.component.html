@@ -55,10 +55,12 @@
                 <td>{{docente.nombre}}</td>
                 <td>{{docente.apellidoPaterno}}</td>
                 <td>{{docente.apellidoMaterno}}</td>
+                
                 <td>
-                    <button class="btn btn-warning" (click)="updateDocente(docente)">Actualiar</button>
+                    <button class="btn btn-warning" [routerLink]="['/actualiazcion/docente/' + idSuperUsuario + '/' + docente.idDocente]">Actualiar</button>
                     <button class="btn btn-danger" (click)="deleteDocente(docente)">Eliminar</button>
                 </td>
+                 
             </tr>
         </tbody>
     </table>
@@ -82,10 +84,12 @@
                 <td>{{jefe.nombre}}</td>
                 <td>{{jefe.apellidoPaterno}}</td>
                 <td>{{jefe.apellidoMaterno}}</td>
+                
                 <td>
                     <button class="btn btn-warning" (click)="updateJefe(jefe)">Actualiar</button>
                     <button class="btn btn-danger" (click)="deleteJefe(jefe)">Eliminar</button>
                 </td>
+                
             </tr>
         </tbody>
     </table>
