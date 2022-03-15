@@ -1,1 +1,114 @@
-<p>update-jefe-carrera works!</p>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>CourseSelectorApp</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+<body>
+  <nav class="navbar fixed-top navbar-dark bg-dark">
+    <h2 class="text-light" style="font-size: 20px">Universidad Privada de Mexico</h2>
+  
+    <ul class="nav nav-pills">
+      <li class="nav-item">
+        <a [routerLink]="['/su/dashboard/', idSuperUsuario]" class="link-secondary">
+          <h2 class="nav-link text-lg-right text-secondary" style="font-size: 18px">Regresar</h2>
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+  <div class="update-box">
+
+    <h1>Actualizar jefe de carrera</h1>
+  
+    <form [formGroup]="updateForm" (ngSubmit)="update()">
+      <div class="form-group">
+        <label>ID</label>
+        <input type="text" 
+        formControlName="idJefeCarrera" 
+        placeholder="ID" 
+        class="form-control"
+        [ngModel]="jefeCarrera.idJefeCarrera"
+        readonly
+        required="required">
+      </div>
+      <div class="form-group">
+        <label>Contraseña</label>
+        <input type="password" 
+        formControlName="password" 
+        placeholder="contraseña" 
+        class="form-control"
+        [ngModel]="jefeCarrera.password"
+        required="required">
+      </div>
+      <div class="form-group">
+        <label>Nombre</label>
+        <input type="text" 
+        formControlName="nombre" 
+        placeholder="nombre" 
+        class="form-control"
+        [ngModel]="jefeCarrera.nombre"
+        required="required">
+      </div>
+      <div class="form-group">
+        <label>Apellido Paterno</label>
+        <input type="text" 
+        formControlName="apellidoPaterno" 
+        placeholder="Apellido Paterno" 
+        class="form-control"
+        [ngModel]="jefeCarrera.apellidoPaterno"
+        required="required">
+      </div>
+      <div class="form-group">
+        <label>Apellido Materno</label>
+        <input type="text" 
+        formControlName="apellidoMaterno" 
+        placeholder="Apellido Materno" 
+        class="form-control"
+        [ngModel]="jefeCarrera.apellidoMaterno"
+        required="required">
+      </div>
+      <div class="form-group">
+        <label>RFC</label>
+        <input type="text" 
+        formControlName="rfc" 
+        placeholder="rfc" 
+        class="form-control"
+        [ngModel]="jefeCarrera.rfc"
+        required="required">
+      </div>
+      <div class="form-group">
+        <label>CURP</label>
+        <input type="text" 
+        formControlName="curp" 
+        placeholder="curp" 
+        class="form-control"
+        [ngModel]="jefeCarrera.curp"
+        required="required">
+      </div>
+      <div class="form-group">
+        <label>Domicilio</label>
+        <input type="text" 
+        formControlName="domicilio" 
+        placeholder="domicilio" 
+        class="form-control"
+        [ngModel]="jefeCarrera.domicilio"
+        required="required">
+      </div>
+      <div class="form-group">
+        <label>NSS</label>
+        <input type="text" 
+        formControlName="nss" 
+        placeholder="NSS" 
+        class="form-control"
+        [ngModel]="jefeCarrera.nss"
+        required="required">
+      </div>
+
+      <button type="submit" class="btn btn-success" [disabled]="updateForm.invalid">Registrar</button>
+    </form>
+  </div>
+</body>
+</html>

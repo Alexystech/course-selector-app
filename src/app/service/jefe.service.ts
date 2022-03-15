@@ -27,7 +27,7 @@ export class JefeService {
     return this.httpClient.put(this.baseUrl + "/update", jefeCarrera);
   }
 
-  public getJefeCarrera(idJefeCarrera: any): Observable<any> {
+  public getJefeCarreraById(idJefeCarrera: any): Observable<any> {
     return this.httpClient.get(this.baseUrl + "/get/" + idJefeCarrera);
   }
 

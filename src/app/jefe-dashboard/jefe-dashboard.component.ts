@@ -42,7 +42,7 @@ export class JefeDashboardComponent implements OnInit {
     {
       "name": "Horas disponibles",
       "series": [{
-        "name": "1999", 
+        "name": "1999",
         "value": 100
       }]
     }
@@ -61,7 +61,7 @@ export class JefeDashboardComponent implements OnInit {
     this.idJefeCarrera = this.route.snapshot.paramMap.get('idJefeCarrera');
     this.updateChart();
 
-    this.asignacionHorarioDefService.getAllAsignaciones().subscribe(resp => {
+    this.asignacionHorarioDefService.getAsigHorarioDefByJefeCarrera(this.idJefeCarrera).subscribe(resp => {
       this.horarioAsignado = resp;
     });
   }
@@ -74,7 +74,7 @@ export class JefeDashboardComponent implements OnInit {
 
       for (let item of resp) {
         let data: Data = new Data();
-        
+
         data.name = item.idDocente;
         data.value = item.horasDisponibles;
 

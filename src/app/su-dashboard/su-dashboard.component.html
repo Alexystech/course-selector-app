@@ -86,7 +86,7 @@
                 <td>{{jefe.apellidoMaterno}}</td>
                 
                 <td>
-                    <button class="btn btn-warning" (click)="updateJefe(jefe)">Actualiar</button>
+                    <button class="btn btn-warning" [routerLink]="['/actualizacion/jefe-carrera/' + idSuperUsuario + '/' + jefe.idJefeCarrera]">Actualiar</button>
                     <button class="btn btn-danger" (click)="deleteJefe(jefe)">Eliminar</button>
                 </td>
                 

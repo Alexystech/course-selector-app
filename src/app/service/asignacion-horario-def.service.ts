@@ -38,4 +38,8 @@ export class AsignacionHorarioDefService {
   public getAllAsignacionesByDocente(idDocente: any): Observable<any> {
     return this.httpClient.get(this.baseUrl + "/get/all/asignaciones/by/docente/" + idDocente);
   }
+
+  public getAsigHorarioDefByJefeCarrera(idJefeCarrera: any): Observable<any> {
+    return this.httpClient.get(this.baseUrl + "/get/asig/def/by/jefe/carrera/" + idJefeCarrera);
+  }
 }

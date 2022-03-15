@@ -13,6 +13,7 @@ import { RegisterJefeComponent } from './register-jefe/register-jefe.component';
 import { SolicitudHorarioComponent } from './solicitud-horario/solicitud-horario.component';
 import { SuDashboardComponent } from './su-dashboard/su-dashboard.component';
 import { UpdateDocenteComponent } from './update-docente/update-docente.component';
+import { UpdateJefeCarreraComponent } from './update-jefe-carrera/update-jefe-carrera.component';
 
 const routes: Routes = [
   { path: 'auth/login/jc', component: LoginJefeCarreraComponent },
@@ -26,7 +27,8 @@ const routes: Routes = [
   { path: 'solicitud/horario/:idDocente', component: SolicitudHorarioComponent },
   { path: 'registro/carrera/:idSuperUsuario', component: RegisterCarreraComponent },
   { path: 'asignacion/horario/:idJefeCarrera', component: AsignarHorarioComponent },
-  { path: 'actualiazcion/docente/:idSuperUsuario/:idDocente', component: UpdateDocenteComponent }
+  { path: 'actualiazcion/docente/:idSuperUsuario/:idDocente', component: UpdateDocenteComponent },
+  { path: 'actualizacion/jefe-carrera/:idSuperUsuario/:idJefeCarrera', component: UpdateJefeCarreraComponent }
 ];
 
 @NgModule({
