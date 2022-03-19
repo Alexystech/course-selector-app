@@ -35,8 +35,12 @@ export class AsignaturaPorCarreraService {
     return this.httpClient.get(this.baseUrl + "/get/all/asignaturas/disponibles");
   }
 
-  public getAsignaturasBySemestre(semestre: any): Observable<any> {
-    return this.httpClient.get(this.baseUrl + "/get/asignaturas/by/" + semestre);
+  public getAsignaturasBySemestre(semestre: any, idJefeCarrera: any): Observable<any> {
+    return this.httpClient.get(this.baseUrl + "/get/asignaturas/by/" + semestre + "/" + idJefeCarrera);
+  }
+
+  public getAsignaturasPorCarreraNotSelected(idDocente: any): Observable<any> {
+    return this.httpClient.get(this.baseUrl + "/get/asig/por/carrera/by/docente/" + idDocente);
   }
 
 }

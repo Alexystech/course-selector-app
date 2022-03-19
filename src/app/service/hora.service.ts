@@ -17,4 +17,8 @@ export class HoraService {
   public getAllHoras(): Observable<any> {
     return this.httpClient.get(this.baseUrl + "/get/all");
   }
+
+  public getHorasNotSelected(idJefeCarrera: any): Observable<any> {
+    return this.httpClient.get(this.baseUrl + "/get/horas/not/selected/" + idJefeCarrera);
+  }
 }

@@ -21,7 +21,7 @@ export class SolicitudHorarioComponent implements OnInit {
   horasDisp!: horaDisp[];
   horasDia!: horaDia[];
   buttonAsigHorario!: boolean;
-  
+
   miHorario: asigHorario[] = [];
   asignaturasDisponibles!: any;
 
@@ -53,13 +53,13 @@ export class SolicitudHorarioComponent implements OnInit {
     this.asigHorarioService.existAnyAsigHorarioByDocenteId(this.idDocente).subscribe(resp => {
       this.buttonAsigHorario = !resp;
     },
-    error => { console.error(error) }  
+    error => { console.error(error) }
     );
 
-    this.asignaturaPorCarreraService.getAllAsignaturasDisponibles().subscribe(resp => {
+    this.asignaturaPorCarreraService.getAsignaturasPorCarreraNotSelected(this.idDocente).subscribe(resp => {
       this.asignaturasDisponibles = resp;
     },
-    error => { console.error(error) }  
+    error => { console.error(error) }
     );
   }
 
@@ -73,20 +73,23 @@ export class SolicitudHorarioComponent implements OnInit {
         'success'
       );
     },
-      error => { console.error(error) }  
+      error => { console.error(error) }
     );
   }
 
   registrarMaterias() {
     this.solicitudMateriaService.createSolicitud(this.solicitudMateriasForm.value).subscribe(resp => {
       this.solicitudMateriasForm.controls['asignaturaPorCarrera'].reset();
+
       Swal.fire(
         'OK',
         'Solicitado!',
         'success'
       );
+
+      this.router.navigate(['d/dashboard', this.idDocente]);
     },
-      error => { console.error(error) }  
+      error => { console.error(error) }
     );
   }
 
@@ -115,47 +118,47 @@ export class SolicitudHorarioComponent implements OnInit {
           if (item.hora_1.isselected==true) {
             let horario: asigHorario = new asigHorario(this.idDocente,item.hora_1.id);
             this.miHorario.push(horario);
-          } 
-    
+          }
+
           if (item.hora_2.isselected==true) {
             let horario: asigHorario = new asigHorario(this.idDocente,item.hora_2.id);
             this.miHorario.push(horario);
           }
-    
+
           if (item.hora_3.isselected==true) {
             let horario: asigHorario = new asigHorario(this.idDocente,item.hora_3.id);
             this.miHorario.push(horario);
           }
-    
+
           if (item.hora_4.isselected==true) {
             let horario: asigHorario = new asigHorario(this.idDocente,item.hora_4.id);
             this.miHorario.push(horario);
           }
-    
+
           if (item.hora_5.isselected==true) {
             let horario: asigHorario = new asigHorario(this.idDocente,item.hora_5.id);
             this.miHorario.push(horario);
           }
-    
+
           if (item.hora_6.isselected==true) {
             let horario: asigHorario = new asigHorario(this.idDocente,item.hora_6.id);
             this.miHorario.push(horario);
           }
-    
+
           if (item.hora_7.isselected==true) {
             let horario: asigHorario = new asigHorario(this.idDocente,item.hora_7.id);
             this.miHorario.push(horario);
           }
         });
-    
+
         this.miHorario.forEach(item => {
           this.asigHorarioService.createAsigHorario(item).subscribe(resp => {});
         });
-    
+
         this.router.navigate(['/d/dashboard', this.idDocente]);
       }
     })
-    
+
   }
 
   getHoras() {

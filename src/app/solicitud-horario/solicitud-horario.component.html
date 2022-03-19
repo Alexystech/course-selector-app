@@ -48,7 +48,7 @@
   <div class="solicitud-materias-form">
 
     <h1>Solicitar asignaturas</h1>
-  
+
     <form [formGroup]="solicitudMateriasForm" (ngSubmit)="registrarMaterias()">
       <div class="form-group">
         <label>Docente</label>
@@ -58,10 +58,10 @@
       <div class="form-group">
         <label>Asignaturas</label>
         <select class="form-select"
-          aria-label="Default select example" 
+          aria-label="Default select example"
           formControlName="asignaturaPorCarrera">
-        <option *ngFor="let item of asignaturasDisponibles" [ngValue]="item.idAsignatura">
-          {{item.nombreAsignatura}}
+        <option *ngFor="let item of asignaturasDisponibles" [ngValue]="item.idAsignatura.idAsignatura">
+          {{item.idAsignatura.nombreAsignatura}} - {{item.idCarrera.nombreCarrera}}
         </option>
       </select>
       </div>

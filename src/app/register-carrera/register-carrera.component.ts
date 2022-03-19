@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CarreraService } from '../service/carrera.service';
 import { JefeService } from '../service/jefe.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-register-carrera',
@@ -39,7 +40,13 @@ export class RegisterCarreraComponent implements OnInit {
   register(): void {
     this.carreraService.createCarrera(this.registerForm.value).subscribe(resp => {
       this.registerForm.reset();
-    }, 
+
+      Swal.fire(
+        'OK',
+        'Solicitado!',
+        'success'
+      );
+    },
       error => { console.error(error) }
     );
   }

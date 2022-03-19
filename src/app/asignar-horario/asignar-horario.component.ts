@@ -43,7 +43,7 @@ export class AsignarHorarioComponent implements OnInit {
       idDocente: ['', Validators.required]
     });
 
-    this.horaService.getAllHoras().subscribe(resp => {
+    this.horaService.getHorasNotSelected(this.idJefeCarrera).subscribe(resp => {
       this.horas = resp;
     },
       error => {console.error(error)}
@@ -73,12 +73,14 @@ export class AsignarHorarioComponent implements OnInit {
       'Horario asignado!',
       'success'
     )
-    
+
+    this.router.navigate(['jc/dashboard', this.idJefeCarrera]);
+
   }
 
   onSelect(semestre: any) {
     console.log(semestre!.value);
-    this.asignaturaPorCarreraService.getAsignaturasBySemestre(semestre!.value).subscribe(resp => {
+    this.asignaturaPorCarreraService.getAsignaturasBySemestre(semestre!.value, this.idJefeCarrera).subscribe(resp => {
       this.asignaturasPorCarrera = resp;
     },
       error => {console.error(error)}
