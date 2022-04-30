@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { JefeService } from '../service/jefe.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login-jefe-carrera',
@@ -34,6 +35,11 @@ export class LoginJefeCarreraComponent implements OnInit {
       } else {
         this.router.navigate(['/auth/login/jc']);
         this.jefeForm.reset();
+        Swal.fire(
+          'Error!',
+          'Usuario o contraseña incorrectos!',
+          'error'
+        )
       }
     },
       error => { console.error(error) }

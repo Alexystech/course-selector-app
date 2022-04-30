@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
+import Swal from 'sweetalert2';
 import { DocenteService } from '../service/docente.service';
 
 @Component({
@@ -35,6 +36,11 @@ export class LoginDocenteComponent implements OnInit {
       } else {
         this.router.navigate(['/auth/login/d'])
         this.docenteForm.reset();
+        Swal.fire(
+          'Error!',
+          'Usuario o contraseña incorrectos!',
+          'error'
+        )
       }
     },
       error => { console.error(error) }

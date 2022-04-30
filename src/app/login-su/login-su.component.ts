@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SuService } from '../service/su.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login-su',
@@ -35,6 +36,11 @@ export class LoginSuComponent implements OnInit {
       } else {
         this.router.navigate(['/auth/login/su']);
         this.suForm.reset();
+        Swal.fire(
+          'Error!',
+          'Usuario o contraseña incorrectos!',
+          'error'
+        )
       }
     },
       error => { console.error(error) }
